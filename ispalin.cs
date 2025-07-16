@@ -1,15 +1,16 @@
-// Is Valid Palindrom (C# 7/14/25)
-
 public class Solution
 {
   public bool IsPalindrome(string s)
   {
-    char[] punctuation = { '*', '!', '@', '#', ' ', '.', '?', ',' };
-    string trimmedString = s.Trim(punctuation);
-    trimmedString = trimmedString.Replace(" ", "");
-    trimmedString = trimmedString.Replace("'", "");
-    trimmedString = trimmedString.Replace(",", "");
-    trimmedString = trimmedString.Replace(":", "");
+    string trimmedString = s.Trim();
+    for (int i = 0; i < s.Length; i++)
+    {
+      if (!Char.IsLetter(s[i]) && !Char.IsNumber(s[i]))
+      {
+        trimmedString = trimmedString.Replace(s[i].ToString(), "");
+      }
+    }
+
     trimmedString = trimmedString.ToLower();
 
     char[] sArr = trimmedString.ToCharArray();
