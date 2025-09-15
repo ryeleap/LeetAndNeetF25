@@ -1,0 +1,40 @@
+public class Solution
+{
+    public int MaxOperations(int[] nums, int k)
+    {
+        Dictionary<int, int> numbas = new Dictionary<int, int>();
+        int count = 0;
+
+        for (int i = 0; i < nums.Length; i++)
+        {
+            int val = nums[i];
+            if (!numbas.ContainsKey(val))
+            {
+                numbas[val] = 1;
+            }
+            else
+            {
+                numbas[val]++;
+            }
+        }
+
+        foreach (var entry in numbas)
+        {
+            int complement = k - entry.Key;
+
+            if (numbas.ContainsKey(complement))
+            {
+                if (entry.Key == complement)
+                {
+                    count += entry.Value / 2;
+                }
+                else if (entry.Key < complement)
+                {
+                    count += Math.Min(entry.Value, numbas[complement]);
+                }
+            }
+        }
+
+        return count;
+    }
+}
