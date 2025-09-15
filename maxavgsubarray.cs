@@ -20,5 +20,6 @@ public class Solution
         }
 
         return avg;
+
     }
 }
